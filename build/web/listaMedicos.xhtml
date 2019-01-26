@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <p:dataTable id="dataTableMedicos"
+                                 value="#{listaMedicos.medicos}"
+                                 var="medico"
+                                 widgetVar="medicosTable"
+                                 emptyMessage="Nenhum medico encontrado"
+                                 rows="5"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15"
+                                 filteredValue="#{listaMedicos.medicosFiltrados}">
+                        <f:facet name="header">
+                            <p:outputPanel>
+                                <h:outputText value="Buscar:" />
+                                <p:inputText id="globalFilter" onkeyup="PF('medicosTable').filter()" style="width:300px" placeholder="Digite a especialidade"/>
+                            </p:outputPanel>
+                        </f:facet>
+                        <p:column style="width:40px">
+                            <p:rowToggler />
+                        </p:column>
+
+                        <p:column headerText="CRM"
+                                  filterBy="#{medico.crm}"
+                                  filterMatchMode="contains">
+                            <h:outputText value="#{medico.crm}" />
+                        </p:column>
+                        
+                        <p:column headerText="Nome"
+                                  filterBy="#{medico.nome}"
+                                  filterMatchMode="contains">
+                            <h:outputText value="#{medico.nome}" />
+                        </p:column>
+                        
+                        <p:column headerText="Especialidade"
+                                  filterBy="#{medico.especialidade}"
+                                  filterMatchMode="contains">
+                            <h:outputText value="#{medico.especialidade}" />
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </ui:define>     
+        </ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <h:outputStylesheet name="default.css" library="css" />
+        <h:outputScript name="default.js" library="js" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <title>Hospital UFSCar</title>
+    </h:head>
+
+    <h:body>
+        <div id="holder">
+            <header>
+                <nav class="navbar navbar-inverse">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>                        
+                            </button>
+                            <a class="navbar-left">
+                                <h:graphicImage class="logo" name="logo.png" library="imagens" width="50" height="50" />
+                            </a>
+                            <a class="navbar-brand" jsf:outcome="index">
+                                Hospital UFSCar
+                            </a>
+
+                        </div>
+                        <div class="collapse navbar-collapse" id="myNavbar">
+                            <ul class="nav navbar-nav navbar-right">
+                                <li class="#{view.viewId=='/index.xhtml'?'active':''}"><a jsf:outcome="index">Home</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+
+            <div id="body" class="container main-container">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+
+            <footer class="navbar-inverse footer">
+                <table class="footer">
+                    <tbody>
+                        <tr>
+                            <td class="align-middle text-center">Hospital UFSCar: Todos os direitos reservados</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </footer>
+        </div>
+        <div class="modal" id="ajaxLoader" />
+    </h:body>
+
+</html>

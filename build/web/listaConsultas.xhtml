@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <f:metadata>
+	<f:event listener="#{login.esta_logado_consultas}" type="preRenderView" />
+    </f:metadata>
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <p:dataTable id="dataTableConsultas"
+                                 value="#{listaConsultas.consultas}"
+                                 var="consulta"
+                                 widgetVar="consultasTable"
+                                 emptyMessage="Nenhuma consulta encontrada"
+                                 rows="5"
+                                 paginator="true"
+                                 paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                 rowsPerPageTemplate="5,10,15"
+                                 filteredValue="#{listaConsultas.consultasFiltrados}">
+                        <f:facet name="header">
+                            <p:outputPanel>
+                                <h:outputText value="Buscar:" />
+                                <p:inputText id="globalFilter" onkeyup="PF('consultasTable').filter()" style="width:300px" placeholder="Busque aqui"/>
+                            </p:outputPanel>
+                        </f:facet>
+                        <p:column style="width:40px">
+                            <p:rowToggler />
+                        </p:column>
+
+                        <p:column headerText="CRM"
+                                  filterBy="#{consulta.crm}"
+                                  filterMatchMode="contains">
+                            <h:outputText value="#{consulta.crm}" />
+                        </p:column>
+                        
+                        <p:column headerText="CPF"
+                                  filterBy="#{consulta.cpf}"
+                                  filterMatchMode="contains">
+                            <h:outputText value="#{consulta.cpf}" />
+                        </p:column>                   
+                        
+                        <p:column headerText="Data"
+                                  filterBy="#{consulta.data}"
+                                  filterMatchMode="contains">
+                            <h:outputText value="#{consulta.data}" />
+                        </p:column>
+                        
+                    </p:dataTable>
+                </h:form>
+            </ui:define>     
+        </ui:composition>
+    </h:body>
+</html>
